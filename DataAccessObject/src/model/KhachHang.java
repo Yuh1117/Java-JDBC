@@ -51,4 +51,9 @@ public class KhachHang {
 		this.diaChi = diaChi;
 	}
 
+	@Override
+	public String toString() {
+		return "KhachHang [id=" + id + ", hoVaTen=" + hoVaTen + ", ngaySinh=" + ngaySinh + ", diaChi=" + diaChi + "]";
+	}
+
 }

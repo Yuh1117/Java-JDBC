@@ -1,12 +1,15 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import database.JDBCUtil;
 import model.KhachHang;
+import model.Sach;
 
 public class KhachHangDAO implements DAOInterface<KhachHang> {
 
@@ -25,9 +28,9 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 			String sql = String.format(
 					"INSERT INTO KhachHang (ID, HoVaTen, NgaySinh, DiaChi) " + "VALUES (%d, \"%s\", \"%s\", \"%s\")",
 					t.getId(), t.getHoVaTen(), t.getNgaySinh(), t.getDiaChi());
-			System.out.println("Ban da thuc thi " + sql);
 
 			result = st.executeUpdate(sql);
+			System.out.println("Ban da thuc thi " + sql);
 			if (result > 0) {
 				System.out.println("So dong thay doi: " + result);
 			} else {
@@ -50,12 +53,12 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 
 			Statement st = c.createStatement();
 
-			String sql = String.format(
-					"UPDATE KhachHang " + "SET " + "HoVaTen = \"%s\"" + ", NgaySinh = \"%s\"" + ", DiaChi = \"%s\" " + "WHERE ID = %s",
-					t.getHoVaTen(), t.getNgaySinh(), t.getDiaChi(), t.getId());
-			System.out.println("Ban da thuc thi " + sql);
+			String sql = String.format("UPDATE KhachHang " + "SET " + "HoVaTen = \"%s\"" + ", NgaySinh = \"%s\""
+					+ ", DiaChi = \"%s\" " + "WHERE ID = %s", t.getHoVaTen(), t.getNgaySinh(), t.getDiaChi(),
+					t.getId());
 
 			result = st.executeUpdate(sql);
+			System.out.println("Ban da thuc thi " + sql);
 			if (result > 0) {
 				System.out.println("So dong thay doi: " + result);
 			} else {
@@ -78,11 +81,10 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 
 			Statement st = c.createStatement();
 
-			String sql = String.format(
-					"DELETE FROM KhachHang " + "WHERE ID = %d", t.getId());
-			System.out.println("Ban da thuc thi " + sql);
+			String sql = String.format("DELETE FROM KhachHang " + "WHERE ID = %d", t.getId());
 
 			result = st.executeUpdate(sql);
+			System.out.println("Ban da thuc thi " + sql);
 			if (result > 0) {
 				System.out.println("So dong thay doi: " + result);
 			} else {
@@ -99,20 +101,106 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 
 	@Override
 	public ArrayList<KhachHang> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<KhachHang> result = new ArrayList<KhachHang>();
+		try {
+			Connection c = JDBCUtil.getConnection();
+
+			Statement st = c.createStatement();
+
+			String sql = "SELECT * FROM KhachHang";
+
+			//*
+			ResultSet rs = st.executeQuery(sql);
+			System.out.println("Ban da thuc thi " + sql);
+			if (rs != null) {
+				while (rs.next()) {
+					int id = rs.getInt("ID");
+					String HoVaTen = rs.getString("HoVaTen");
+					Date NgaySinh = rs.getDate("NgaySinh");
+					String DiaChi = rs.getString("DiaChi");
+
+					KhachHang k = new KhachHang(id, HoVaTen, NgaySinh, DiaChi);
+					result.add(k);
+				}
+			} else {
+				System.out.println("That bai");
+			}
+
+			JDBCUtil.closeConnection(c);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 	@Override
 	public KhachHang selectById(KhachHang t) {
-		// TODO Auto-generated method stub
-		return null;
+		KhachHang result = null;
+		try {
+			Connection c = JDBCUtil.getConnection();
+
+			Statement st = c.createStatement();
+
+			String sql = String.format( "SELECT * FROM KhachHang WHERE ID = %d", t.getId());
+			
+			//*
+			ResultSet rs = st.executeQuery(sql);
+			System.out.println("Ban da thuc thi " + sql);
+			if (rs != null) {
+				while (rs.next()) {
+					int id = rs.getInt("ID");
+					String HoVaTen = rs.getString("HoVaTen");
+					Date NgaySinh = rs.getDate("NgaySinh");
+					String DiaChi = rs.getString("DiaChi");
+
+					result = new KhachHang(id, HoVaTen, NgaySinh, DiaChi);
+				}
+			} else {
+				System.out.println("That bai");
+			}
+
+			JDBCUtil.closeConnection(c);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 	@Override
 	public ArrayList<KhachHang> selectByCondition(String condition) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<KhachHang> result = new ArrayList<KhachHang>();
+		try {
+			Connection c = JDBCUtil.getConnection();
+
+			Statement st = c.createStatement();
+
+			String sql = "SELECT * FROM KhachHang WHERE " + condition;
+
+			//*
+			ResultSet rs = st.executeQuery(sql);
+			System.out.println("Ban da thuc thi " + sql);
+			if (rs != null) {
+				while (rs.next()) {
+					int id = rs.getInt("ID");
+					String HoVaTen = rs.getString("HoVaTen");
+					Date NgaySinh = rs.getDate("NgaySinh");
+					String DiaChi = rs.getString("DiaChi");
+
+					KhachHang k = new KhachHang(id, HoVaTen, NgaySinh, DiaChi);
+					result.add(k);
+				}
+			} else {
+				System.out.println("That bai");
+			}
+
+			JDBCUtil.closeConnection(c);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 }
