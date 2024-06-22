@@ -19,36 +19,36 @@ public class KhachHang {
 		this.setDiaChi(diaChi);
 	}
 
-	private String getDiaChi() {
-		return diaChi;
-	}
-
-	private void setDiaChi(String diaChi) {
-		this.diaChi = diaChi;
-	}
-
-	private Date getNgaySinh() {
-		return ngaySinh;
-	}
-
-	private void setNgaySinh(Date ngaySinh) {
-		this.ngaySinh = ngaySinh;
-	}
-
-	private String getHoVaTen() {
-		return hoVaTen;
-	}
-
-	private void setHoVaTen(String hoVaTen) {
-		this.hoVaTen = hoVaTen;
-	}
-
-	private int getId() {
+	public int getId() {
 		return id;
 	}
 
-	private void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getHoVaTen() {
+		return hoVaTen;
+	}
+
+	public void setHoVaTen(String hoVaTen) {
+		this.hoVaTen = hoVaTen;
+	}
+
+	public Date getNgaySinh() {
+		return ngaySinh;
+	}
+
+	public void setNgaySinh(Date ngaySinh) {
+		this.ngaySinh = ngaySinh;
+	}
+
+	public String getDiaChi() {
+		return diaChi;
+	}
+
+	public void setDiaChi(String diaChi) {
+		this.diaChi = diaChi;
 	}
 
 }

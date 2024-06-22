@@ -17,35 +17,36 @@ public class Sach {
 		this.setNamXuatBan(namXuatBan);
 	}
 
-	private int getNamXuatBan() {
-		return namXuatBan;
-	}
-
-	private void setNamXuatBan(int namXuatBan) {
-		this.namXuatBan = namXuatBan;
-	}
-
-	private Float getGiaBan() {
-		return giaBan;
-	}
-
-	private void setGiaBan(Float giaBan) {
-		this.giaBan = giaBan;
-	}
-
-	private String getTenSach() {
-		return tenSach;
-	}
-
-	private void setTenSach(String tenSach) {
-		this.tenSach = tenSach;
-	}
-
-	private String getId() {
+	public String getId() {
 		return id;
 	}
 
-	private void setId(String id) {
+	public void setId(String id) {
 		this.id = id;
 	}
+
+	public String getTenSach() {
+		return tenSach;
+	}
+
+	public void setTenSach(String tenSach) {
+		this.tenSach = tenSach;
+	}
+
+	public Float getGiaBan() {
+		return giaBan;
+	}
+
+	public void setGiaBan(Float giaBan) {
+		this.giaBan = giaBan;
+	}
+
+	public int getNamXuatBan() {
+		return namXuatBan;
+	}
+
+	public void setNamXuatBan(int namXuatBan) {
+		this.namXuatBan = namXuatBan;
+	}
+
 }
